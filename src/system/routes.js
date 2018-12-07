@@ -1,11 +1,8 @@
 import Home from '../pages/index.vue'
 import NotFound from '../pages/404.vue'
 
-// импортируем библиотеку tiny-cookie
-import { getCookie } from 'tiny-cookie'
-
-// берём из кукисов текущую локаль
-const locale = getCookie('language')
+// берём из localStorage текущую локаль
+const locale = localStorage.language
 
 // роутинг
 export const routes = [
@@ -22,4 +19,4 @@ export const routes = [
   { path: '*', redirect: "/404" }
 ]
 
-// console.log(locale)
+console.log(localStorage.language)

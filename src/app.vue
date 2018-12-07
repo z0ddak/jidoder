@@ -206,12 +206,12 @@
 </template>
 
 <script>
-    // импортируем библиотеку tiny-cookie
-    import { setCookie } from 'tiny-cookie'
 
-    // назначаем хранение в месяц
-    const month = new Date
-    month.setMonth(month.getMonth() + 1)
+    // определяем локаль посетителя
+    const language = (window.navigator.language || navigator.userLanguage).substr(0, 2).toLowerCase()
+    if (localStorage.language === undefined) {
+       localStorage.language = language
+    }
 
     export default {
 
@@ -245,8 +245,8 @@
                     },
                     {
                         listtile: true,
-                        switch: 'pantoprodukts',
-                        title: this.$t("message.pantoprodukts")
+                        switch: 'pantoproducts',
+                        title: this.$t("message.pantoproducts")
                     },
                     {
                         listtile: true,
@@ -278,10 +278,13 @@
         },
         methods:{
             buttonClick(item) {
-                // пишем локаль в кукисы
+                // пишем локаль в localStorage
                 const flag = true
-                setCookie('flag', flag)
-                setCookie('language', item.locale, { expires: month })
+                if (localStorage.flag === '') {
+                    localStorage.flag = flag
+                }
+
+                localStorage.language = item.locale
             }
         },
         props: {
@@ -289,7 +292,7 @@
         }
     }
 
-    // console.log()
+    console.log(localStorage.language)
 </script>
 
 <style lang="stylus">

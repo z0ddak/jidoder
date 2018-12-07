@@ -1,30 +1,23 @@
-// импортируем библиотеку tiny-cookie
-import { getCookie, setCookie } from 'tiny-cookie'
-
-// назначаем хранение в месяц
-const month = new Date;
-month.setMonth(month.getMonth() + 1);
-
 // назначаем флаг
 const flag = true
 
-// пишем его в кукисы
-if (getCookie('flag') === '') {
-  setCookie('flag', flag)
+// пишем его в localStorage
+if (localStorage.flag === '') {
+    localStorage.flag = flag
 }
 
 // определяем локаль посетителя
 const language = (window.navigator.language || navigator.userLanguage).substr(0, 2).toLowerCase()
 
-// пишем локаль в кукисы, если отсутствует или отличается с текущей
-if ((getCookie('language') === '') || ((getCookie('language') !== language) && (getCookie('flag') === flag))) {
-  setCookie('language', language, { expires: month })
+// пишем локаль в localStorage, при условии если отсутствует или отличается с текущей
+if ((localStorage.language && (localStorage.language === '')) || ((localStorage.language !== language) && (localStorage.flag === flag))) {
+    localStorage.language = language
 }
 
 // назначаем локаль глобально
-export const locale = getCookie('language')
+export const locale = localStorage.language
 
 // подтягиваем файл локализации
-export const messages = require(`./i18n/${locale}`).default
+export const messages = require(`./i18n/all.js`).default
 
-// console.log()
+console.log(localStorage.language)
