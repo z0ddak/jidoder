@@ -20,4 +20,4 @@ export const locale = localStorage.language
 // подтягиваем файл локализации
 export const messages = require(`./i18n/all.js`).default
 
-console.log(localStorage.language)
+// console.log(localStorage.language)

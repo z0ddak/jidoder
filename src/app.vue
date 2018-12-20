@@ -292,7 +292,7 @@
         }
     }
 
-    console.log(localStorage.language)
+    // console.log(localStorage.language)
 </script>
 
 <style lang="stylus">

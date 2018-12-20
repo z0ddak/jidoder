@@ -19,4 +19,4 @@ export const routes = [
   { path: '*', redirect: "/404" }
 ]
 
-console.log(localStorage.language)
+// console.log(localStorage.language)
